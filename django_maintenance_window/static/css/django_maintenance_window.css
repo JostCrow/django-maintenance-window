@@ -1,0 +1,29 @@
+.maintenance {
+  margin: 0;
+  width: 100%;
+  height: 100vh;
+  background-color: #E84C3D;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+}
+
+.maintenance .maintenance__centered {
+  width: 50%;
+  height: 260px;
+  color: #fff;
+  text-align: center;
+}
+
+.icon {
+  display: inline-block;
+  stroke-width: 0;
+  stroke: #fff;
+  fill: #fff;
+}
