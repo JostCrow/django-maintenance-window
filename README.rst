@@ -5,11 +5,22 @@ django-maintenance-window
 .. image:: https://badge.fury.io/py/django-maintenance-window.svg
     :target: https://badge.fury.io/py/django-maintenance-window
 
-.. image:: https://travis-ci.org/jostcrow/django-maintenance-window.svg?branch=master
-    :target: https://travis-ci.org/jostcrow/django-maintenance-window
+.. image:: https://travis-ci.org/JostCrow/django-maintenance-window.svg?branch=master
+    :target: https://travis-ci.org/JostCrow/django-maintenance-window
 
-.. image:: https://codecov.io/gh/jostcrow/django-maintenance-window/branch/master/graph/badge.svg
-    :target: https://codecov.io/gh/jostcrow/django-maintenance-window
+.. image:: https://codecov.io/gh/JostCrow/django-maintenance-window/branch/master/graph/badge.svg
+    :target: https://codecov.io/gh/JostCrow/django-maintenance-window
+
+.. image:: https://lintly.com/gh/JostCrow/django-maintenance-window/badge.svg
+    :target: https://lintly.com/gh/JostCrow/django-maintenance-window/
+    :alt: Lintly
+
+.. image:: https://bettercodehub.com/edge/badge/maykinmedia/dual-listbox?branch=master
+    :target: https://bettercodehub.com/results/JostCrow/django-maintenance-window
+
+.. image:: https://api.codeclimate.com/v1/badges/6583656ee5ab17179caf/maintainability
+   :target: https://codeclimate.com/github/JostCrow/django-maintenance-window/maintainability
+   :alt: Maintainability
 
 Your project description goes here
 
