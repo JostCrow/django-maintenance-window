@@ -76,6 +76,12 @@ Settings
     Overwrite the template that is used for the maintenance template
 * MAINTENANCE_DISPLAY_END_DATE = False
     If the end date should be displayed at the bottom of the page.
+* MAINTENANCE_EXCLUDE_ADMIN_URLS = True
+    This will allow accessing the admin even if maintenance mode is active.
+* MAINTENANCE_EXCLUDE_SUPER_USER = False
+    This will allow super users to see the site even if maintenance mode is active.
+* MAINTENANCE_EXCLUDE_STAFF_USER = False
+    This will allow staff users to see the site even if maintenance mode is active.
 
 Running Tests
 -------------

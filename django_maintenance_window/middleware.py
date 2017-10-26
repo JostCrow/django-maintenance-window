@@ -1,11 +1,12 @@
 # -*- coding: utf-8 -*-
 
 import django
+from django.core.urlresolvers import reverse
 from django.shortcuts import render
 from django.utils.cache import add_never_cache_headers
 
+from . import settings
 from .models import MaintenanceMode
-from .settings import MAINTENANCE_TEMPLATE, MAINTENANCE_DISPLAY_END_DATE
 
 if django.VERSION < (1, 10):
     MaintenanceModeMiddlewareBaseClass = object
@@ -26,14 +27,25 @@ class MaintenanceModeMiddleware(MaintenanceModeMiddlewareBaseClass):
         """
         config = MaintenanceMode.get_solo()
 
-        if config.maintenance and not request.path.startswith('/admin/'):
+        admin_root_url = reverse('admin:index')
+
+        skip_maintenance = False
+        if request.path.startswith(admin_root_url) and settings.MAINTENANCE_EXCLUDE_ADMIN_URLS:
+            skip_maintenance = True
+        if request.user.is_superuser and settings.MAINTENANCE_EXCLUDE_SUPER_USER:
+            skip_maintenance = True
+        if request.user.is_staff and settings.MAINTENANCE_EXCLUDE_STAFF_USER:
+            skip_maintenance = True
+
+        if config.maintenance and not skip_maintenance:
             kwargs = {
                 'end_date': config.maintenance_until,
-                'display_end_date': MAINTENANCE_DISPLAY_END_DATE
+                'display_end_date': settings.MAINTENANCE_DISPLAY_END_DATE
             }
 
             response = render(
-                request, MAINTENANCE_TEMPLATE, content_type='text/html', status=503, context=kwargs)
+                request, settings.MAINTENANCE_TEMPLATE,
+                content_type='text/html', status=503, context=kwargs)
             add_never_cache_headers(response)
             return response
         return None
