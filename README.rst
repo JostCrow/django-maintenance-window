@@ -15,7 +15,7 @@ django-maintenance-window
     :target: https://lintly.com/gh/JostCrow/django-maintenance-window/
     :alt: Lintly
 
-.. image:: https://bettercodehub.com/edge/badge/maykinmedia/dual-listbox?branch=master
+.. image:: https://bettercodehub.com/edge/badge/JostCrow/django-maintenance-window?branch=master
     :target: https://bettercodehub.com/results/JostCrow/django-maintenance-window
 
 .. image:: https://api.codeclimate.com/v1/badges/6583656ee5ab17179caf/maintainability
