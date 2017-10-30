@@ -3,6 +3,11 @@
 History
 -------
 
+0.2.1 (2017-10-30)
+++++++++++++++++++
+
+* Fixed that the admin would give a 500 when you only set the maintenance_from.
+
 0.2.0 (2017-10-26)
 ++++++++++++++++++
 

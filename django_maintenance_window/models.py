@@ -19,7 +19,7 @@ class MaintenanceMode(SingletonModel):
     class Meta:
         verbose_name = _("Maintenance Mode")
 
-    def save(self, *args, **kwargs):
+    def clean(self):
         if self.maintenance_from and not self.maintenance_until:
-            raise ValidationError(_('You can not set "maintenance_from" without setting "maintenance_until"'))
-        super(MaintenanceMode, self).save(*args, **kwargs)
+            raise ValidationError(_('You can not set "maintenance_from" \
+                " without setting "maintenance_until"'))
