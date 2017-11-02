@@ -23,3 +23,7 @@ class MaintenanceMode(SingletonModel):
         if self.maintenance_from and not self.maintenance_until:
             raise ValidationError(_('You can not set "maintenance_from" \
                 " without setting "maintenance_until"'))
+
+    def save(self, *args, **kwargs):
+        self.full_clean()
+        return super(MaintenanceMode, self).save(*args, **kwargs)
