@@ -29,10 +29,10 @@ class TestDjango_maintenance_window(TestCase):
         maintenance = models.MaintenanceMode(maintenance_from=timezone.now())
         with self.assertRaises(ValidationError) as exc_context:
             maintenance.save()
-
+        # assert False, exc_context.exception.messages
         self.assertEqual(
-            exc_context.exception.message,
-            _('You can not set "maintenance_from" without setting "maintenance_until"')
+            exc_context.exception.messages,
+            [_('You can not set "maintenance_from" without setting "maintenance_until"')]  # noqa
         )
 
     def test_can_be_saved_empty(self):
