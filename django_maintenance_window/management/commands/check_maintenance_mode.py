@@ -11,7 +11,7 @@ class Command(BaseCommand):
         now = timezone.now()
 
         if config.maintenance:
-            if config.maintenance_until < now:
+            if config.maintenance_until and config.maintenance_until < now:
                 config.maintenance = False
                 config.maintenance_until = None
                 config.save()
