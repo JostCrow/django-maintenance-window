@@ -59,6 +59,8 @@ setup(
     install_requires=[
         'Django>=1.8',
         'django-solo>=1.1.2',
+        'pytz',
+        'django-recurrence>1.10.0',
     ],
     license="BSD",
     zip_safe=False,

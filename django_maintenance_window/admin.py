@@ -2,7 +2,14 @@ from django.contrib import admin
 
 from solo.admin import SingletonModelAdmin
 
-from .models import MaintenanceMode
+from .models import MaintenanceMode, Schedule
 
 
-admin.site.register(MaintenanceMode, SingletonModelAdmin)
+class ScheduleInlineAdmin(admin.TabularInline):
+    model = Schedule
+    extra = 1
+
+
+@admin.register(MaintenanceMode)
+class MaintenanceModeAdmin(SingletonModelAdmin):
+    inlines = [ScheduleInlineAdmin]
