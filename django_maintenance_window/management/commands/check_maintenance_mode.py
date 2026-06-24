@@ -15,8 +15,7 @@ class Command(BaseCommand):
     def handle(self, *args, **options):
         from django_maintenance_window.models import MaintenanceMode
         config = MaintenanceMode.get_solo()
-        unaware_now = datetime.now()
-        now = pytz.timezone("Europe/Amsterdam").localize(unaware_now)
+        now = timezone.now()
         if config.maintenance:
             logger.info("Try disabling maintenance mode")
             self.disable_maintenance_mode(config, now)

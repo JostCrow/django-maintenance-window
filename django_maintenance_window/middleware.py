@@ -1,11 +1,10 @@
 # -*- coding: utf-8 -*-
 
-import django
 from django.urls import reverse
 from django.shortcuts import render
 from django.utils.cache import add_never_cache_headers
 
-from . import settings
+from .conf import settings
 from .models import MaintenanceMode
 
 
@@ -37,17 +36,25 @@ class MaintenanceModeMiddleware:
         """
         config = MaintenanceMode.get_solo()
 
+        if not config.maintenance:
+            return None
+
         admin_root_url = reverse('admin:index')
 
         skip_maintenance = False
-        if request.path.startswith(admin_root_url) and settings.MAINTENANCE_EXCLUDE_ADMIN_URLS:
+        if settings.MAINTENANCE_EXCLUDE_ADMIN_URLS and request.path.startswith(admin_root_url):
             skip_maintenance = True
-        if request.user and request.user.is_superuser and settings.MAINTENANCE_EXCLUDE_SUPER_USER:
+        if settings.MAINTENANCE_EXCLUDE_SUPER_USER and request.user and request.user.is_superuser:
             skip_maintenance = True
-        if request.user and request.user.is_staff and settings.MAINTENANCE_EXCLUDE_STAFF_USER:
+        if settings.MAINTENANCE_EXCLUDE_STAFF_USER and request.user and request.user.is_staff:
             skip_maintenance = True
 
-        if config.maintenance and not skip_maintenance:
+        for exclude_url in settings.MAINTENANCE_EXCLUDE_URLS:
+            if request.path.startswith(exclude_url):
+                skip_maintenance = True
+                break
+
+        if not skip_maintenance:
             kwargs = {
                 'end_date': config.maintenance_until,
                 'display_end_date': settings.MAINTENANCE_DISPLAY_END_DATE

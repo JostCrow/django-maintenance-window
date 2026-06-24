@@ -82,6 +82,9 @@ Settings
     This will allow super users to see the site even if maintenance mode is active.
 * MAINTENANCE_EXCLUDE_STAFF_USER = False
     This will allow staff users to see the site even if maintenance mode is active.
+* MAINTENANCE_EXCLUDE_URLS = []
+    A list of URL prefixes that will allow access if maintenance mode is active.
+
 
 Running Tests
 -------------
